@@ -19,23 +19,38 @@ class TestReverseLinkedList(unittest.TestCase):
     def setUp(self):
         self.solution = Solution()
 
+    def get_linked_list_values(self, head):
+        result = []
+        cur = head
+        while cur is not None:
+            result.append(cur.val)
+            cur = cur.next
+        return result
+
+    def create_linked_list(self, values):
+        values.reverse()
+        if not values:
+            return None
+        prev_node = ListNode(values[0])
+        for i in range(1, len(values)):
+            next_node = ListNode(values[i], prev_node)
+            prev_node = next_node
+        return prev_node
+
     def test_empty_list(self):
         result = self.solution.reverseList(ListNode())
         expected = ListNode()
-        self.assertEqual(self.solution.get_linked_list_values(result), self.solution.get_linked_list_values(expected))
+        self.assertEqual(self.get_linked_list_values(result), self.get_linked_list_values(expected))
 
     def test_one_value(self):
         result = self.solution.reverseList(ListNode(1))
         expected = ListNode(1)
-        self.assertEqual(self.solution.get_linked_list_values(result), self.solution.get_linked_list_values(expected))
+        self.assertEqual(self.get_linked_list_values(result), self.get_linked_list_values(expected))
 
     def test_two_values(self):
-        two = ListNode(2)
-        one = ListNode(1, two)
-        two_res = ListNode(1)
-        one_res = ListNode(2, two_res)
-        result = self.solution.reverseList(one)
-        self.assertEqual(self.solution.get_linked_list_values(result), self.solution.get_linked_list_values(one_res))
+        head = self.create_linked_list([11, 5, 38, 2, 9])
+        result = self.solution.reverseList(head)
+        self.assertEqual(self.get_linked_list_values(result), [9, 2, 38, 5, 11])
 
 
 if __name__ == "__main__":
@@ -53,27 +68,19 @@ class ListNode(object):
 
 class Solution(object):
     def reverseList(self, head):
-        values = self.get_linked_list_values(head)
-        values.reverse()
-        head1 = self.create_linked_list(values)
-        return head1
-
-    def get_linked_list_values(self, head):
-        result = []
-        cur = head
-        while cur != None:
-            result.append(cur.val)
-            cur = cur.next
-        return result
-
-    def create_linked_list(self, values):
-        values.reverse()
-        if values == []:
-            return None
-        prev_node = ListNode(values[0])
-        for i in range(1, len(values)):
-            next_node = ListNode(values[i], prev_node)
-            prev_node = next_node
-        return prev_node
+        if head is None:
+            return head
+            
+        cur_node = head
+        prev_node = None
+            
+        while cur_node is not None:
+            next_node = cur_node.next
+            cur_node.next = prev_node
+            prev_node = cur_node
+            cur_node = next_node
+            head = prev_node
+            
+        return head
 ```
 
