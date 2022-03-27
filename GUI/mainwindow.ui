@@ -17,22 +17,25 @@
    <widget class="QCalendarWidget" name="MyCalendar">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>20</y>
-      <width>344</width>
+      <width>391</width>
       <height>461</height>
      </rect>
     </property>
     <property name="firstDayOfWeek">
      <enum>Qt::Sunday</enum>
     </property>
+    <property name="verticalHeaderFormat">
+     <enum>QCalendarWidget::ISOWeekNumbers</enum>
+    </property>
    </widget>
    <widget class="QPlainTextEdit" name="NewNote">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>430</x>
       <y>20</y>
-      <width>371</width>
+      <width>351</width>
       <height>461</height>
      </rect>
     </property>

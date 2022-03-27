@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\Maria\PythonProjects\Lab1\mainwindow.ui'
+# Form implementation generated from reading ui file 'mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -18,11 +18,12 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.MyCalendar = QtWidgets.QCalendarWidget(self.centralwidget)
-        self.MyCalendar.setGeometry(QtCore.QRect(30, 20, 344, 461))
+        self.MyCalendar.setGeometry(QtCore.QRect(20, 20, 391, 461))
         self.MyCalendar.setFirstDayOfWeek(QtCore.Qt.Sunday)
+        self.MyCalendar.setVerticalHeaderFormat(QtWidgets.QCalendarWidget.ISOWeekNumbers)
         self.MyCalendar.setObjectName("MyCalendar")
         self.NewNote = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.NewNote.setGeometry(QtCore.QRect(400, 20, 371, 461))
+        self.NewNote.setGeometry(QtCore.QRect(430, 20, 351, 461))
         self.NewNote.setPlainText("")
         self.NewNote.setObjectName("NewNote")
         self.AddNote = QtWidgets.QPushButton(self.centralwidget)
