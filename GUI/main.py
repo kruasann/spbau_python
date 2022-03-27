@@ -1,34 +1,38 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication
-from mainwindow import *
 
 import sys
+import pathlib
+
 
 Form, Window = uic.loadUiType("mainwindow.ui")
 app = QApplication(sys.argv)
 window = Window()
 form = Form()
+
 form.setupUi(window)
 window.show()
 
 
-def date_click(self):
+def get_date():
     qdate = form.MyCalendar.selectedDate()
-    date = f'{qdate.day()}.{qdate.month()}.{qdate.year()}'
+    return f'{qdate.day()}.{qdate.month()}.{qdate.year()}'
 
-    folder = "D:/MyNotes"
-    global path, file
-    path = f'{folder}/{date}.txt'
+
+def get_note():
+    return form.NewNote.toPlainText()
+
+
+def create_file_note():
+    note = get_note()
+    date = get_date()
+    path = f'{pathlib.Path.home()}/{date}.txt'
+
     file = open(path, "w")
-
-
-def create_file_note(self):
-    note = form.NewNote.toPlainText()
     file.write(note)
     file.close()
 
 
-form.MyCalendar.clicked.connect(date_click)
 form.AddNote.clicked.connect(create_file_note)
 
 sys.exit(app.exec_())
