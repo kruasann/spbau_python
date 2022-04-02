@@ -45,3 +45,10 @@ if __name__ == '__main__':
     time2 = time.time()
     main_mp(number_of_dots)
     print("Using multiprocessing: ", time.time() - time2)
+    
+    
+"""Example:
+Number of dots: 10000000
+Without multiprocessing: 13.26905632019043
+Using multiprocessing:  0.056154727935791016
+"""
