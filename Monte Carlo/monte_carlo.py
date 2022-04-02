@@ -44,3 +44,14 @@ if __name__ == '__main__':
     time2 = time.time()
     integral_2 = main_mp(number_of_dots)
     print(f"Using multiprocessing: {time.time() - time2} sec\nIntegral = {integral_2}")
+
+
+"""
+Example:
+
+Number of dots: 10000000
+Without multiprocessing: 13.54913067817688 sec
+Integral = 1.570752030338481
+Using multiprocessing: 10.203454971313477 sec
+Integral = 1.5713740656838917
+"""
