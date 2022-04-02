@@ -9,6 +9,10 @@ def func(x):
     return np.arccos(2 * x)
 
 
+def make_dot(_):
+    return random.uniform(- 1 / 2, 1 / 2), random.uniform(0, np.pi)
+
+
 def check(coordinates):
     x, y = coordinates
     if y <= func(x):
@@ -16,32 +20,22 @@ def check(coordinates):
     return 0
 
 
-def make_x_values(_):
-    return random.uniform(- 1 / 2, 1 / 2)
-
-
-def make_y_values(_):
-    return random.uniform(0, np.pi)
-
-
 def main(n):
     pool = mp.Pool(mp.cpu_count())
-    x_values = pool.map(make_x_values, [0] * n)
-    y_values = pool.map(make_y_values, [0] * n)
-    m = sum(pool.map(check, zip(x_values, y_values)))
-    return (1 / 2 - (- 1 / 2)) * (np.pi - 0) * (m / n), x_values, y_values
+    dots = pool.map(make_dot, [0] * n)
+    m = sum(pool.map(check, dots))
+    return (1 / 2 - (- 1 / 2)) * (np.pi - 0) * (m / n)
 
 
 if __name__ == '__main__':
-    n = [15000, 25000, 35000]
-    plt.title("Monte Carlo method", fontsize=20)
-    x_for_plot = np.arange(- 1 / 2, 1 / 2, 0.01)
-    plt.plot(x_for_plot, func(x_for_plot), linewidth=3, color="#0E5A10")
+    n = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
+    integrals = []
     for number in n:
-        integral, x, y = main(number)
+        integral = main(number)
         print(f"Using {number} dots, integral = {integral}")
-        plt.scatter(x, y, s=5, color=("#" + hex(number * 12345)[2:8:]))
-
+        integrals.append(integral)
+    plt.plot(n, integrals)
+    plt.xscale('log')
     plt.savefig("Plot.jpg")
     plt.show()
 
@@ -49,9 +43,17 @@ if __name__ == '__main__':
 """
 Example:
 
-Using 15000 dots, integral = 1.5800116652454266
-Using 25000 dots, integral = 1.5650157963122913
-Using 35000 dots, integral = 1.567834253721512
+Using 100 dots, integral = 1.4451326206513049
+Using 500 dots, integral = 1.6901768476313088
+Using 1000 dots, integral = 1.595929068023615
+Using 5000 dots, integral = 1.5444069485047422
+Using 10000 dots, integral = 1.53592464834005
+Using 50000 dots, integral = 1.566963583757517
+Using 100000 dots, integral = 1.566083937814512
+Using 500000 dots, integral = 1.5733221672883828
+Using 1000000 dots, integral = 1.569875840147395
+Using 5000000 dots, integral = 1.5702911586961992
+Using 10000000 dots, integral = 1.570835910862332
 
 You can see the plot in Plot.jpg.
 """
