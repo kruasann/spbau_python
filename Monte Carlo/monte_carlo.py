@@ -2,7 +2,6 @@ import random
 import time
 import numpy as np
 import multiprocessing as mp
-import matplotlib.pyplot as plt
 
 
 def func(x):
