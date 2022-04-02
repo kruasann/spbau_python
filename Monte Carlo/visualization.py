@@ -44,3 +44,13 @@ if __name__ == '__main__':
     number_of_dots = int(input("Number of dots: "))
     integral = main(number_of_dots)
     print("Integral =", integral)
+
+
+"""
+Example:
+
+Number of dots: 5000
+Integral = 1.5865042900628454
+
+You can see the plot in Plot.jpg.
+"""
