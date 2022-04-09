@@ -2,7 +2,7 @@
 
 - [GUI application](#GUI)
 - [Monte Carlo method](#Monte-Carlo)
-- [Relations count](#Relations count)
+- [Relations count](#Relations-count)
 
 ## GUI
   The application allows you to create notes and saves them to files "<date>.txt" (you can choose it using a calendar in the app).
