@@ -12,6 +12,6 @@
   
 ## Relations count
   This problem was proposed to me in a Discrete mathematics course. The program generates all possible relations on sets of a given size and returns a distribution matrix of counted relations depending on their properties. There is an implementation using a relations generator class and a faster one using numba. You also can see Relations.jpg file that helps to understand the calculation result.
-  ### Example
+  Example:
     Without numba it took about 21 sec to count relations between 4-element set to 5-element set.
     Using numba this calculation took only 0.76 sec.
