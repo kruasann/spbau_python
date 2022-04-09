@@ -1,6 +1,6 @@
 # Projects
 
-- [GUI application](#GUI)
+- [GUI application](#https://github.com/merirut/spbau_python/tree/main/GUI)
 - [Monte Carlo method](#Monte-Carlo)
 - [Relations count](#Relations-count)
 
