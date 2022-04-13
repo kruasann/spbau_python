@@ -1,38 +1,54 @@
+import os
+import sys
+
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication
 
-import sys
-import pathlib
+
+class Note():
+    def __init__(self):
+        Form, Window = uic.loadUiType("mainwindow.ui")
+
+        self.app = QApplication(sys.argv)
+        self.window = Window()
+
+        self.form = Form()
+        self.form.setupUi(self.window)
+        self.window.show()
+
+        self.date = None
+        self.note = None
+        self.path = f'{os.path.abspath(os.curdir)}/Notes/'
+        self.dir_path = f'{os.path.abspath(os.curdir)}/Notes/'
+
+    def get_date(self):
+        qdate = self.form.MyCalendar.selectedDate()
+        return f'{qdate.day()}.{qdate.month()}.{qdate.year()}'
+
+    def get_note(self):
+        return self.form.NewNote.toPlainText()
+
+    def create_file_note(self):
+        self.note = self.get_note()
+        self.date = self.get_date()
+        self.path = f'{os.path.abspath(os.curdir)}/Notes/{self.date}.txt'
+        self.form.Text.setText(f"Note {self.date} created!")
+        file = open(self.path, "w")
+        file.write(self.note)
+        file.close()
+
+    def delete_note(self):
+        date = self.form.MyCalendar.selectedDate()
+        date = f'{date.day()}.{date.month()}.{date.year()}.txt'
+        if date in os.listdir(self.dir_path):
+            os.remove(f'{self.dir_path}{date}')
+            self.form.Text.setText(f"Note {date} deleted!")
+        else:
+            self.form.Text.setText(f"Note {date} doesn't exist!")
 
 
-Form, Window = uic.loadUiType("mainwindow.ui")
-app = QApplication(sys.argv)
-window = Window()
-form = Form()
+notes = Note()
+notes.form.AddNote.clicked.connect(notes.create_file_note)
+notes.form.DeleteNote.clicked.connect(notes.delete_note)
 
-form.setupUi(window)
-window.show()
-
-
-def get_date():
-    qdate = form.MyCalendar.selectedDate()
-    return f'{qdate.day()}.{qdate.month()}.{qdate.year()}'
-
-
-def get_note():
-    return form.NewNote.toPlainText()
-
-
-def create_file_note():
-    note = get_note()
-    date = get_date()
-    path = f'{pathlib.Path.home()}/{date}.txt'
-
-    file = open(path, "w")
-    file.write(note)
-    file.close()
-
-
-form.AddNote.clicked.connect(create_file_note)
-
-sys.exit(app.exec_())
+sys.exit(notes.app.exec_())

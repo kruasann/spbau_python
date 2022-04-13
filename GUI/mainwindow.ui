@@ -23,8 +23,17 @@
       <height>461</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
     <property name="firstDayOfWeek">
      <enum>Qt::Sunday</enum>
+    </property>
+    <property name="gridVisible">
+     <bool>true</bool>
     </property>
     <property name="verticalHeaderFormat">
      <enum>QCalendarWidget::ISOWeekNumbers</enum>
@@ -46,7 +55,7 @@
    <widget class="QPushButton" name="AddNote">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>280</x>
       <y>500</y>
       <width>80</width>
       <height>25</height>
@@ -54,6 +63,32 @@
     </property>
     <property name="text">
      <string>Add note</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="DeleteNote">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>500</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete note</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>530</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -64,7 +99,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuNotes">
